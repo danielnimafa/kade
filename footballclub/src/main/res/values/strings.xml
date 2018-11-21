@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Football Club</string>
+    <string name="inter_desc">
+        Football Club Internazionale Milano, commonly referred to as Internazionale.\n
+    Inter has won 30 domestic trophies on par with its local rivals A.C. Milan, including 18 league titles, 7 Coppa Italia and 5 Supercoppa Italiana. From 2006 to 2010, the club won five successive league titles, equalling the all-time record at that time.\n
+        They have won the Champions League three times: two back-to-back in 1964 and 1965 and then another in 2010.
+    </string>
 </resources>
