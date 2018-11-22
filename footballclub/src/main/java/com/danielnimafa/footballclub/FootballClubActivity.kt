@@ -29,7 +29,20 @@ class FootballClubActivity : AppCompatActivity() {
         val arrData = ArrayList<FootballClub>()
         arrData.apply {
             add(FootballClub("Inter Milan", R.drawable.inter, getString(R.string.inter_desc)))
+            add(FootballClub("AC Milan", R.drawable.ac_milan, getString(R.string.ac_milan_desc)))
+            add(FootballClub("Juventus", R.drawable.juve, getString(R.string.juve_desc)))
+            add(FootballClub("SS Lazio", R.drawable.lazio, getString(R.string.lazio_desc)))
+            add(FootballClub("Chelsea FC", R.drawable.chelsea, getString(R.string.chelsea_desc)))
+            add(FootballClub("Manchester United", R.drawable.mu, getString(R.string.mu_desc)))
+            add(FootballClub("Liverpool FC", R.drawable.liverpool, getString(R.string.liverpool_desc)))
+            add(FootballClub("Arsenal FC", R.drawable.arsenal, getString(R.string.arsenal_desc)))
+            add(FootballClub("Real Madrid FC", R.drawable.realm, getString(R.string.realmadrid_desc)))
+            add(FootballClub("FC Barcelona", R.drawable.fcb, getString(R.string.fcb_desc)))
+            add(FootballClub("Paris Saint Germaint", R.drawable.psg, getString(R.string.psg_desc)))
+            add(FootballClub("AS Monaco", R.drawable.as_monaco, getString(R.string.monaco_desc)))
         }
+
+        mAdapter.addCollectionData(arrData)
     }
 
     private fun setupContentView() {

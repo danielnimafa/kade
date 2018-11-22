@@ -2,6 +2,7 @@ package com.danielnimafa.footballclub.adapter
 
 import android.app.Activity
 import android.support.v7.widget.RecyclerView
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -64,7 +65,7 @@ class FootballClubRowUI() : AnkoComponent<ViewGroup> {
         verticalLayout {
             lparams(matchParent, wrapContent)
             orientation = LinearLayout.HORIZONTAL
-            gravity = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER_VERTICAL
             setPaddingRelative(dip(0), dip(8), dip(0), dip(8))
 
             imageView {
