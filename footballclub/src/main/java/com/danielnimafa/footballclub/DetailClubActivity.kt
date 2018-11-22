@@ -1,7 +1,6 @@
 package com.danielnimafa.footballclub
 
 import android.os.Bundle
-import android.support.v4.view.GravityCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.widget.ImageView

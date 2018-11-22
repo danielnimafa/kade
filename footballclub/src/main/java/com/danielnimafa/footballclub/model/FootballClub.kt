@@ -1,13 +1,18 @@
 package com.danielnimafa.footballclub.model
 
-import android.os.Parcel
 import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
 data class FootballClub(var label: String,
                         var img: Int,
                         var desc: String)
 
-class FootballClubParcel() : Parcelable {
+@Parcelize
+data class FootballClubParcel(var label: String,
+                              var desc: String,
+                              var img: Int) : Parcelable
+
+/*class FootballClubParcel() : Parcelable {
     var label: String = ""
     var desc: String = ""
     var img: Int = 0
@@ -37,4 +42,4 @@ class FootballClubParcel() : Parcelable {
             return arrayOfNulls(size)
         }
     }
-}
+}*/
