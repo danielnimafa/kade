@@ -8,13 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.danielnimafa.footballclub.model.FootballClub
+import com.danielnimafa.footballclub.model.FootballClubParcel
 import org.jetbrains.anko.*
-import java.util.*
-import kotlin.collections.ArrayList
 
-class FCAdapter(var list: ArrayList<FootballClub> = arrayListOf(),
-                val itemTap: (FootballClub) -> Unit) : RecyclerView.Adapter<FCAdapter.ItemHolder>() {
+class FCAdapter(var list: ArrayList<FootballClubParcel> = arrayListOf(),
+                val itemTap: (FootballClubParcel) -> Unit) : RecyclerView.Adapter<FCAdapter.ItemHolder>() {
 
     lateinit var activity: Activity
 
@@ -35,20 +33,15 @@ class FCAdapter(var list: ArrayList<FootballClub> = arrayListOf(),
         }
     }
 
-    fun addCollectionData(fclubs: ArrayList<FootballClub>) {
+    fun addCollectionData(fclubs: ArrayList<FootballClubParcel>) {
         list.addAll(fclubs)
         notifyDataSetChanged()
     }
 
     inner class ItemHolder(v: View) : RecyclerView.ViewHolder(v) {
 
-        var labelTx: TextView
-        var imgThumb: ImageView
-
-        init {
-            labelTx = v.findViewById(FootballClubRowUI.labelTx)
-            imgThumb = v.findViewById(FootballClubRowUI.imgClub)
-        }
+        var labelTx: TextView = v.findViewById(FootballClubRowUI.labelTx)
+        var imgThumb: ImageView = v.findViewById(FootballClubRowUI.imgClub)
 
     }
 
@@ -57,8 +50,8 @@ class FCAdapter(var list: ArrayList<FootballClub> = arrayListOf(),
 class FootballClubRowUI() : AnkoComponent<ViewGroup> {
 
     companion object {
-        val labelTx = 1
-        val imgClub = 2
+        const val labelTx = 1
+        const val imgClub = 2
     }
 
     override fun createView(ui: AnkoContext<ViewGroup>): View = with(ui) {

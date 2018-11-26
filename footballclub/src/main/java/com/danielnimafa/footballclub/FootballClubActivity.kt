@@ -6,7 +6,6 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.danielnimafa.footballclub.adapter.FCAdapter
-import com.danielnimafa.footballclub.model.FootballClub
 import com.danielnimafa.footballclub.model.FootballClubParcel
 import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.recyclerview.v7.recyclerView
@@ -25,20 +24,20 @@ class FootballClubActivity : AppCompatActivity() {
     }
 
     private fun populateFootballData() {
-        val arrData = ArrayList<FootballClub>()
+        val arrData = ArrayList<FootballClubParcel>()
         arrData.apply {
-            add(FootballClub("Inter Milan", R.drawable.inter, getString(R.string.inter_desc)))
-            add(FootballClub("AC Milan", R.drawable.ac_milan, getString(R.string.ac_milan_desc)))
-            add(FootballClub("Juventus", R.drawable.juve, getString(R.string.juve_desc)))
-            add(FootballClub("SS Lazio", R.drawable.lazio, getString(R.string.lazio_desc)))
-            add(FootballClub("Chelsea FC", R.drawable.chelsea, getString(R.string.chelsea_desc)))
-            add(FootballClub("Manchester United", R.drawable.mu, getString(R.string.mu_desc)))
-            add(FootballClub("Liverpool FC", R.drawable.liverpool, getString(R.string.liverpool_desc)))
-            add(FootballClub("Arsenal FC", R.drawable.arsenal, getString(R.string.arsenal_desc)))
-            add(FootballClub("Real Madrid FC", R.drawable.realm, getString(R.string.realmadrid_desc)))
-            add(FootballClub("FC Barcelona", R.drawable.fcb, getString(R.string.fcb_desc)))
-            add(FootballClub("Paris Saint Germaint", R.drawable.psg, getString(R.string.psg_desc)))
-            add(FootballClub("AS Monaco", R.drawable.as_monaco, getString(R.string.monaco_desc)))
+            add(FootballClubParcel("Inter Milan", R.drawable.inter, getString(R.string.inter_desc)))
+            add(FootballClubParcel("AC Milan", R.drawable.ac_milan, getString(R.string.ac_milan_desc)))
+            add(FootballClubParcel("Juventus", R.drawable.juve, getString(R.string.juve_desc)))
+            add(FootballClubParcel("SS Lazio", R.drawable.lazio, getString(R.string.lazio_desc)))
+            add(FootballClubParcel("Chelsea FC", R.drawable.chelsea, getString(R.string.chelsea_desc)))
+            add(FootballClubParcel("Manchester United", R.drawable.mu, getString(R.string.mu_desc)))
+            add(FootballClubParcel("Liverpool FC", R.drawable.liverpool, getString(R.string.liverpool_desc)))
+            add(FootballClubParcel("Arsenal FC", R.drawable.arsenal, getString(R.string.arsenal_desc)))
+            add(FootballClubParcel("Real Madrid FC", R.drawable.realm, getString(R.string.realmadrid_desc)))
+            add(FootballClubParcel("FC Barcelona", R.drawable.fcb, getString(R.string.fcb_desc)))
+            add(FootballClubParcel("Paris Saint Germaint", R.drawable.psg, getString(R.string.psg_desc)))
+            add(FootballClubParcel("AS Monaco", R.drawable.as_monaco, getString(R.string.monaco_desc)))
         }
 
         mAdapter.addCollectionData(arrData)
@@ -46,8 +45,7 @@ class FootballClubActivity : AppCompatActivity() {
 
     private fun setupContentView() {
         mAdapter = FCAdapter {
-            val parcel = FootballClubParcel(it.label, it.desc, it.img)
-            startActivity<DetailClubActivity>("fc" to parcel)
+            startActivity<DetailClubActivity>("fc" to it)
         }
 
         verticalLayout {
