@@ -3,6 +3,8 @@ package com.danielnimafa.klasemenliga.model
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
+data class EventMatch(var events : List<MatchData>?)
+
 @Parcelize
 data class MatchData(var idEvent: String?,
                      var strEvent: String?,
