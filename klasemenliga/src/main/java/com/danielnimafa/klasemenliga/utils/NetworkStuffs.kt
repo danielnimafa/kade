@@ -10,13 +10,34 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
 object RequestData {
 
-    fun lastMatchRequest(completion: (EventMatch?) -> Unit, error: (String) -> Unit): DisposableObserver<Response<EventMatch>> {
+    fun lastMatchRequest(leagueId: Int, completion: (EventMatch?) -> Unit, error: (String) -> Unit): DisposableObserver<Response<EventMatch>> {
         var events: EventMatch? = null
-        return ServiceGenerator.createService().lastMatch()
+        return ServiceGenerator.createService().lastMatch(leagueId)
+                .subscribeWith(object : DisposableObserver<Response<EventMatch>>() {
+                    override fun onComplete() {
+                        completion(events)
+                    }
+
+                    override fun onNext(t: Response<EventMatch>) {
+                        if (t.isSuccessful) events = t.body()
+                    }
+
+                    override fun onError(e: Throwable) {
+                        Sout.trace(e as Exception)
+                        error("Failed to fetch events. Error: ${e.localizedMessage}")
+                    }
+                })
+    }
+
+    fun nextMatchRequest(leagueId: Int, completion: (EventMatch?) -> Unit, error: (String) -> Unit): DisposableObserver<Response<EventMatch>> {
+        var events: EventMatch? = null
+        return ServiceGenerator.createService().nextMatch(leagueId)
                 .subscribeWith(object : DisposableObserver<Response<EventMatch>>() {
                     override fun onComplete() {
                         completion(events)
@@ -38,7 +59,10 @@ object RequestData {
 interface api {
 
     @GET("eventspastleague.php")
-    fun lastMatch(): Observable<Response<EventMatch>>
+    fun lastMatch(@Query("id") id: Int): Observable<Response<EventMatch>>
+
+    @GET("eventsnextleague.php")
+    fun nextMatch(@Query("id") id: Int): Observable<Response<EventMatch>>
 
 }
 
