@@ -57,8 +57,7 @@ class HomeActivity : AppCompatActivity() {
         val secondTitle = "Next Match"
         vpAdapter.apply {
             addFragment(LastMatchFragment.newInstance(), firstTitle)
-            addFragment(LastMatchFragment.newInstance(), firstTitle)
-            //addFragment(NextMatchFragment.newInstance(), secondTitle)
+            addFragment(NextMatchFragment.newInstance(), secondTitle)
         }
     }
 }
