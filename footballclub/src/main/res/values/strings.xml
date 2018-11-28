@@ -48,4 +48,6 @@
     <string name="monaco_desc">
         commonly referred to as AS Monaco (pronounced [ɑ ɛs mɔnako]) or simply Monaco, is a Monégasque football club that competes in Ligue 1, the top tier of French football. Founded in 1924, the club team plays its home matches at the Stade Louis II in Fontvieille. The club is managed by former player Thierry Henry and captained by Radamel Falcao.
     </string>
+    <string name="teams">Teams</string>
+    <string name="favorites">Favorites</string>
 </resources>
