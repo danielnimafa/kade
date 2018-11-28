@@ -1,6 +1,7 @@
 package com.danielnimafa.klasemenliga.model
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 data class EventMatch(var events : List<MatchData>?)
@@ -34,3 +35,11 @@ data class MatchData(var idEvent: String?,
                      var dateEvent: String?,
                      var strDate: String?,
                      var strTime: String?) : Parcelable
+
+data class TeamList(var teams: List<TeamDetail>)
+
+@Parcelize
+data class TeamDetail(var idTeam: String,
+                      var strTeam: String,
+                      @SerializedName("strTeamBadge")
+                      var strTeamLogo: String?) : Parcelable

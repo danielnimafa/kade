@@ -1,6 +1,7 @@
 package com.danielnimafa.klasemenliga.utils
 
 import com.danielnimafa.klasemenliga.model.EventMatch
+import com.danielnimafa.klasemenliga.model.TeamList
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
@@ -59,6 +60,27 @@ object RequestData {
                 })
     }
 
+    fun teamDetailRequest(teamId: String, completion: (String?) -> Unit): DisposableObserver<Response<TeamList>> {
+        var events: String? = null
+        return ServiceGenerator.createService().teamDetail(teamId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<Response<TeamList>>() {
+                    override fun onComplete() {
+                        completion(events)
+                    }
+
+                    override fun onNext(t: Response<TeamList>) {
+                        if (t.isSuccessful) events = t.body()?.teams!![0].strTeamLogo
+                    }
+
+                    override fun onError(e: Throwable) {
+                        Sout.trace(e as Exception)
+                        //error("Failed to fetch events. Error: ${e.localizedMessage}")
+                    }
+                })
+    }
+
 }
 
 interface api {
@@ -68,6 +90,9 @@ interface api {
 
     @GET("eventsnextleague.php")
     fun nextMatch(@Query("id") id: Int): Observable<Response<EventMatch>>
+
+    @GET("lookupteam.php")
+    fun teamDetail(@Query("id") id: String): Observable<Response<TeamList>>
 
 }
 
