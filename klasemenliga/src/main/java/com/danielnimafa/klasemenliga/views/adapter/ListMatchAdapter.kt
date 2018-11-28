@@ -30,10 +30,18 @@ class ListMatchAdapter(val datasource: ArrayList<MatchData>,
     inner class ItemHolder(view: View, itemTap: (MatchData) -> Unit) : RecyclerView.ViewHolder(view) {
 
         val dateTx: TextView = view.findViewById(R.id.dateTx)
+        val homeTeamTx: TextView = view.findViewById(R.id.homeTeamTx)
+        val homeScoreTx: TextView = view.findViewById(R.id.homeScoreTx)
+        val awayScoreTx: TextView = view.findViewById(R.id.awayScoreTx)
+        val awayTeamTx: TextView = view.findViewById(R.id.awayTeamTx)
 
         fun bindData(matchData: MatchData) {
             with(matchData) {
                 dateTx.text = strDate
+                homeTeamTx.text = strHomeTeam
+                homeScoreTx.text = intHomeScore ?: "-"
+                awayTeamTx.text = strAwayTeam
+                awayScoreTx.text = intAwayScore ?: "-"
                 itemView.setOnClickListener { itemTap(this) }
             }
         }
