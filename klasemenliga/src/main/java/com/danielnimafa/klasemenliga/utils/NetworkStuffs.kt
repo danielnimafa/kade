@@ -2,7 +2,9 @@ package com.danielnimafa.klasemenliga.utils
 
 import com.danielnimafa.klasemenliga.model.EventMatch
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -10,7 +12,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
@@ -19,6 +20,8 @@ object RequestData {
     fun lastMatchRequest(leagueId: Int, completion: (EventMatch?) -> Unit, error: (String) -> Unit): DisposableObserver<Response<EventMatch>> {
         var events: EventMatch? = null
         return ServiceGenerator.createService().lastMatch(leagueId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<Response<EventMatch>>() {
                     override fun onComplete() {
                         completion(events)
@@ -38,6 +41,8 @@ object RequestData {
     fun nextMatchRequest(leagueId: Int, completion: (EventMatch?) -> Unit, error: (String) -> Unit): DisposableObserver<Response<EventMatch>> {
         var events: EventMatch? = null
         return ServiceGenerator.createService().nextMatch(leagueId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<Response<EventMatch>>() {
                     override fun onComplete() {
                         completion(events)

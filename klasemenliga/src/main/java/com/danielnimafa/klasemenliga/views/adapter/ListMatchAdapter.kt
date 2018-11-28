@@ -8,11 +8,12 @@ import android.widget.TextView
 import com.danielnimafa.klasemenliga.R
 import com.danielnimafa.klasemenliga.model.MatchData
 
-class ListMatchAdapter(val datasource: ArrayList<MatchData>) : RecyclerView.Adapter<ListMatchAdapter.ItemHolder>() {
+class ListMatchAdapter(val datasource: ArrayList<MatchData>,
+                       private val itemTap: (MatchData) -> Unit) : RecyclerView.Adapter<ListMatchAdapter.ItemHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, p1: Int): ItemHolder {
         val view = LayoutInflater.from(container.context).inflate(R.layout.row_match_layout, container, false)
-        return ItemHolder(view)
+        return ItemHolder(view, itemTap)
     }
 
     override fun getItemCount(): Int = datasource.size
@@ -26,13 +27,14 @@ class ListMatchAdapter(val datasource: ArrayList<MatchData>) : RecyclerView.Adap
         notifyDataSetChanged()
     }
 
-    inner class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ItemHolder(view: View, itemTap: (MatchData) -> Unit) : RecyclerView.ViewHolder(view) {
 
         val dateTx: TextView = view.findViewById(R.id.dateTx)
 
         fun bindData(matchData: MatchData) {
             with(matchData) {
                 dateTx.text = strDate
+                itemView.setOnClickListener { itemTap(this) }
             }
         }
 
