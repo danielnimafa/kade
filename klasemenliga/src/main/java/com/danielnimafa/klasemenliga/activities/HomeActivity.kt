@@ -6,11 +6,13 @@ import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v4.app.Fragment
 import com.danielnimafa.klasemenliga.R
+import com.danielnimafa.klasemenliga.fragments.FavoritesFragment
 import com.danielnimafa.klasemenliga.fragments.LastMatchFragment
 import com.danielnimafa.klasemenliga.fragments.NextMatchFragment
 import com.danielnimafa.klasemenliga.views.adapter.SwipeAdapter
-import kotlinx.android.synthetic.main.activity_club_activity.*
+import kotlinx.android.synthetic.main.activity_home_layout.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class HomeActivity : AppCompatActivity() {
@@ -29,35 +31,27 @@ class HomeActivity : AppCompatActivity() {
             title = "Football Match Schedule"
         }
 
-        // TODO setup view pager
-        val vpAdapter = SwipeAdapter(supportFragmentManager)
-        vpHome.apply {
-            adapter = vpAdapter
-            addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.pref_match -> {
+                    loadScreen(LastMatchFragment(), LastMatchFragment::class.java.simpleName)
+                }
+                R.id.next_match -> {
+                    loadScreen(NextMatchFragment(), NextMatchFragment::class.java.simpleName)
+                }
+                R.id.favorites -> {
+                    loadScreen(FavoritesFragment(), FavoritesFragment::class.java.simpleName)
+                }
+            }
+            true
         }
 
-        tabLayout.apply {
-            setupWithViewPager(vpHome)
-            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-                override fun onTabReselected(p0: TabLayout.Tab?) {
-                    p0?.also { vpHome.currentItem = it.position }
-                }
+        bottom_navigation.selectedItemId = R.id.pref_match
+    }
 
-                override fun onTabUnselected(p0: TabLayout.Tab?) {
-
-                }
-
-                override fun onTabSelected(p0: TabLayout.Tab?) {
-
-                }
-            })
-        }
-
-        val firstTitle = "Last Match"
-        val secondTitle = "Next Match"
-        vpAdapter.apply {
-            addFragment(LastMatchFragment.newInstance(), firstTitle)
-            addFragment(NextMatchFragment.newInstance(), secondTitle)
-        }
+    private fun loadScreen(fragment: Fragment, TAG: String) {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.main_container, fragment, TAG)
+                .commit()
     }
 }
