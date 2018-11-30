@@ -1,12 +1,12 @@
 package com.danielnimafa.klasemenliga.model
 
-data class Favorite(val id: Long?, val teamId: String?, val teamName: String?, val teamBadge: String?) {
+data class Favorite(val id: Long?, val matchId: String?, val matchName: String?, val matchDetail: String?) {
 
     companion object {
         const val TABLE_FAVORITE: String = "TABLE_FAVORITE"
         const val ID: String = "ID_"
-        const val TEAM_ID: String = "TEAM_ID"
-        const val TEAM_NAME: String = "TEAM_NAME"
-        const val TEAM_BADGE: String = "TEAM_BADGE"
+        const val MATCH_ID: String = "MATCH_ID"
+        const val MATCH_NAME: String = "MATCH_NAME"
+        const val MATCH_DETAIL: String = "MATCH_DETAIL"
     }
 }

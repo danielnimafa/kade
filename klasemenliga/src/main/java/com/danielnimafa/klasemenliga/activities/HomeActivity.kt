@@ -40,7 +40,7 @@ class HomeActivity : AppCompatActivity() {
                     loadScreen(NextMatchFragment.newInstance(), NextMatchFragment.TAG)
                 }
                 R.id.favorites -> {
-                    loadScreen(FavoritesFragment(), FavoritesFragment::class.java.simpleName)
+                    loadScreen(FavoritesFragment.newInstance(), FavoritesFragment.TAG)
                 }
             }
             true
