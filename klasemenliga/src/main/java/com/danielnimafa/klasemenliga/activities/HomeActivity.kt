@@ -3,17 +3,17 @@ package com.danielnimafa.klasemenliga.activities
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import com.danielnimafa.klasemenliga.R
 import com.danielnimafa.klasemenliga.fragments.FavoritesFragment
 import com.danielnimafa.klasemenliga.fragments.LastMatchFragment
 import com.danielnimafa.klasemenliga.fragments.NextMatchFragment
-import com.danielnimafa.klasemenliga.views.adapter.SwipeAdapter
+import com.danielnimafa.klasemenliga.utils.Sout
 import kotlinx.android.synthetic.main.activity_home_layout.*
 import kotlinx.android.synthetic.main.toolbar.*
+
 
 class HomeActivity : AppCompatActivity() {
 
@@ -24,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        setContentView(R.layout.activity_club_activity)
+        setContentView(R.layout.activity_home_layout)
 
         setSupportActionBar(my_toolbar)
         supportActionBar?.apply {
@@ -34,10 +34,10 @@ class HomeActivity : AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.pref_match -> {
-                    loadScreen(LastMatchFragment(), LastMatchFragment::class.java.simpleName)
+                    loadScreen(LastMatchFragment.newInstance(), LastMatchFragment.TAG)
                 }
                 R.id.next_match -> {
-                    loadScreen(NextMatchFragment(), NextMatchFragment::class.java.simpleName)
+                    loadScreen(NextMatchFragment.newInstance(), NextMatchFragment.TAG)
                 }
                 R.id.favorites -> {
                     loadScreen(FavoritesFragment(), FavoritesFragment::class.java.simpleName)
@@ -47,6 +47,9 @@ class HomeActivity : AppCompatActivity() {
         }
 
         bottom_navigation.selectedItemId = R.id.pref_match
+        bottom_navigation.post {
+            Sout.log("Bottom nav height", bottom_navigation.height)
+        }
     }
 
     private fun loadScreen(fragment: Fragment, TAG: String) {
@@ -54,4 +57,5 @@ class HomeActivity : AppCompatActivity() {
                 .replace(R.id.main_container, fragment, TAG)
                 .commit()
     }
+
 }

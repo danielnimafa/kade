@@ -4,16 +4,16 @@
     <item
         android:id="@+id/pref_match"
         android:enabled="true"
-        android:title="@string/teams"
-        android:icon="@drawable/ic_teams"
-        app:showAsAction="ifRoom"/>
+        android:icon="@drawable/ic_prev_match"
+        android:title="@string/pre_metch"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/next_match"
         android:enabled="true"
-        android:title="@string/teams"
-        android:icon="@drawable/ic_teams"
-        app:showAsAction="ifRoom"/>
+        android:icon="@drawable/ic_next_match"
+        android:title="@string/next_metch"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/favorites"
