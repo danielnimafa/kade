@@ -4,22 +4,37 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.danielnimafa.klasemenliga.R
 import com.danielnimafa.klasemenliga.model.MatchData
 import com.danielnimafa.klasemenliga.utils.RequestData
+import com.danielnimafa.klasemenliga.utils.Sout
+import com.danielnimafa.klasemenliga.utils.dbhelper
+import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.content_detail_layout.*
 import kotlinx.android.synthetic.main.toolbar.*
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.delete
+import org.jetbrains.anko.toast
 
 class DetailScheduleActivity : AppCompatActivity() {
 
+    //region Properties
     companion object {
         operator fun get(context: Context) = Intent(context, DetailScheduleActivity::class.java)
     }
 
-    var data: MatchData? = null
-    val subs = CompositeDisposable()
+    private var data: MatchData? = null
+    private var matchDetailStr = ""
+    private val subs = CompositeDisposable()
+    private var menuItem: Menu? = null
+    private var addFavorMenu: MenuItem? = null
+    private var isFavorite: Boolean = false
+    //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +54,93 @@ class DetailScheduleActivity : AppCompatActivity() {
         data?.let { attachData(it) }
     }
 
+    override fun onResume() {
+        super.onResume()
+        favoriteState()
+        setFavorite()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         subs.clear()
     }
+
+    //region :: Menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        menuItem = menu
+        menu?.run {
+            addFavorMenu = findItem(R.id.add_to_favorite)
+            setFavorite()
+        }
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            R.id.add_to_favorite -> {
+                if (isFavorite) removeFromFavorite() else addToFavorite()
+
+                isFavorite = !isFavorite
+                Sout.log("Favorite value", isFavorite)
+                setFavorite()
+
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+    //endregion
+
+    private fun setFavorite() {
+        val drawableIcon = if (isFavorite) R.drawable.ic_added_to_favorites else R.drawable.ic_add_to_favorites
+        //menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, drawableIcon)
+        addFavorMenu?.icon = ContextCompat.getDrawable(this, drawableIcon)
+        //invalidateOptionsMenu()
+    }
+
+    //region :: DB Operation
+    private fun removeFromFavorite() {
+        try {
+            dbhelper.use {
+                delete(Favorite.TABLE_FAVORITE, "MATCH_ID = {id}", "id" to data!!.idEvent!!)
+            }
+        } catch (e: Exception) {
+            Sout.trace(e)
+            toast("Failed to remove from favorite. Error: ${e.localizedMessage}")
+        }
+    }
+
+    private fun favoriteState() {
+        dbhelper.use {
+            val result = select(Favorite.TABLE_FAVORITE)
+                    .whereArgs("MATCH_ID = {id}", "id" to data!!.idEvent!!)
+            val favorite = result.parseList(classParser<Favorite>())
+            isFavorite = favorite.isNotEmpty()
+            Sout.log("isFavorite", isFavorite)
+        }
+    }
+
+    private fun addToFavorite() {
+        try {
+            dbhelper.use {
+                insert(Favorite.TABLE_FAVORITE,
+                        Favorite.MATCH_ID to data!!.idEvent,
+                        Favorite.MATCH_NAME to data!!.strEvent,
+                        Favorite.MATCH_DETAIL to matchDetailStr)
+            }
+            toast("Added to favorite")
+        } catch (e: Exception) {
+            Sout.trace(e)
+            toast("Failed to add favorite${e.localizedMessage}")
+        }
+    }
+    /*endregion*/
 
     private fun attachData(t: MatchData) {
 

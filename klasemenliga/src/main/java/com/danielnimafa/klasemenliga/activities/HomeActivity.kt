@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_club_activity.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class HomeActivity : AppCompatActivity() {
-
     companion object {
         operator fun get(context: Context) = Intent(context, HomeActivity::class.java)
     }
@@ -59,5 +58,11 @@ class HomeActivity : AppCompatActivity() {
             addFragment(LastMatchFragment.newInstance(), firstTitle)
             addFragment(NextMatchFragment.newInstance(), secondTitle)
         }
+    }
+
+    private fun loadScreen(fragment: Fragment, TAG: String) {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.main_container, fragment, TAG)
+                .commit()
     }
 }
