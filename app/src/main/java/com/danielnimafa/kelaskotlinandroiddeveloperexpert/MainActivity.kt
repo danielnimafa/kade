@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     suspend fun amoundOfCapital(): Int {
-        delay(1000)
+        delay(10000)
         return 1000000
     }
 
