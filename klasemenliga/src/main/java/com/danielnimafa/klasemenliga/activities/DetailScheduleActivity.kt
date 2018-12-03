@@ -6,7 +6,10 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import com.danielnimafa.klasemenliga.R
+import com.danielnimafa.klasemenliga.model.Favorite
 import com.danielnimafa.klasemenliga.model.MatchData
 import com.danielnimafa.klasemenliga.utils.RequestData
 import com.danielnimafa.klasemenliga.utils.Sout
@@ -143,6 +146,9 @@ class DetailScheduleActivity : AppCompatActivity() {
     /*endregion*/
 
     private fun attachData(t: MatchData) {
+
+        matchDetailStr = Gson().toJson(t)
+        Sout.log("Match Detail", matchDetailStr)
 
         fetchHomeImageTeam(t.idHomeTeam!!) { imgPath ->
             imgPath?.let { imgHomeTeam.setImageURI(it) }

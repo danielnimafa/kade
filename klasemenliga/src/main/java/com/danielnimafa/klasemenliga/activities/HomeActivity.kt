@@ -3,14 +3,15 @@ package com.danielnimafa.klasemenliga.activities
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.TabLayout
+import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import com.danielnimafa.klasemenliga.R
+import com.danielnimafa.klasemenliga.fragments.FavoritesFragment
 import com.danielnimafa.klasemenliga.fragments.LastMatchFragment
 import com.danielnimafa.klasemenliga.fragments.NextMatchFragment
-import com.danielnimafa.klasemenliga.views.adapter.SwipeAdapter
-import kotlinx.android.synthetic.main.activity_club_activity.*
+import com.danielnimafa.klasemenliga.utils.Sout
+import kotlinx.android.synthetic.main.activity_home_layout.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class HomeActivity : AppCompatActivity() {
@@ -21,42 +22,31 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        setContentView(R.layout.activity_club_activity)
+        setContentView(R.layout.activity_home_layout)
 
         setSupportActionBar(my_toolbar)
         supportActionBar?.apply {
             title = "Football Match Schedule"
         }
 
-        // TODO setup view pager
-        val vpAdapter = SwipeAdapter(supportFragmentManager)
-        vpHome.apply {
-            adapter = vpAdapter
-            addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.pref_match -> {
+                    loadScreen(LastMatchFragment.newInstance(), LastMatchFragment.TAG)
+                }
+                R.id.next_match -> {
+                    loadScreen(NextMatchFragment.newInstance(), NextMatchFragment.TAG)
+                }
+                R.id.favorites -> {
+                    loadScreen(FavoritesFragment.newInstance(), FavoritesFragment.TAG)
+                }
+            }
+            true
         }
 
-        tabLayout.apply {
-            setupWithViewPager(vpHome)
-            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-                override fun onTabReselected(p0: TabLayout.Tab?) {
-                    p0?.also { vpHome.currentItem = it.position }
-                }
-
-                override fun onTabUnselected(p0: TabLayout.Tab?) {
-
-                }
-
-                override fun onTabSelected(p0: TabLayout.Tab?) {
-
-                }
-            })
-        }
-
-        val firstTitle = "Last Match"
-        val secondTitle = "Next Match"
-        vpAdapter.apply {
-            addFragment(LastMatchFragment.newInstance(), firstTitle)
-            addFragment(NextMatchFragment.newInstance(), secondTitle)
+        bottom_navigation.selectedItemId = R.id.pref_match
+        bottom_navigation.post {
+            Sout.log("Bottom nav height", bottom_navigation.height)
         }
     }
 
