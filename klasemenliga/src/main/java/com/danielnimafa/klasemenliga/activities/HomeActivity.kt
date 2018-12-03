@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 
 class HomeActivity : AppCompatActivity() {
-
     companion object {
         operator fun get(context: Context) = Intent(context, HomeActivity::class.java)
     }
@@ -57,5 +56,4 @@ class HomeActivity : AppCompatActivity() {
                 .replace(R.id.main_container, fragment, TAG)
                 .commit()
     }
-
 }

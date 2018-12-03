@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import com.danielnimafa.klasemenliga.model.Favorite
 import com.danielnimafa.klasemenliga.model.MatchData
 import com.danielnimafa.klasemenliga.utils.Sout
-import com.danielnimafa.klasemenliga.utils.database
+import com.danielnimafa.klasemenliga.utils.dbhelper
 import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -26,7 +26,7 @@ class FavoritesFragment : BaseMatchFragment() {
 
     override fun performDataRequest() {
         showProgress()
-        context?.database?.use {
+        context?.dbhelper?.use {
             val arrData = ArrayList<MatchData>()
             mAdapter?.apply {
                 datasource.clear()
@@ -39,10 +39,17 @@ class FavoritesFragment : BaseMatchFragment() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnNext {
-                        Gson().fromJson(it.matchDetail, MatchData::class.java)?.let { arrData.add(it) }
+                        Gson().fromJson(it.matchDetail, MatchData::class.java)?.let {
+                            arrData.add(it)
+                            Sout.log("favorite", "added")
+                        }
+                        Sout.log("favorite", "exist")
                     }
                     .doOnError { Sout.trace(it as Exception) }
-                    .doOnComplete { mAdapter?.addCollectionData(arrData) }
+                    .doOnComplete {
+                        hideProgress()
+                        mAdapter?.addCollectionData(arrData)
+                    }
                     .subscribe()
         }
     }

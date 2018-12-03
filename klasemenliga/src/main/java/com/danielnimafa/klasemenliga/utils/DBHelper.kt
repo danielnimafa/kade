@@ -23,7 +23,8 @@ class DBOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "FavTeam.db", nu
         db.createTable(Favorite.TABLE_FAVORITE, true,
                 Favorite.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
                 Favorite.MATCH_ID to TEXT + UNIQUE,
-                Favorite.MATCH_NAME to TEXT)
+                Favorite.MATCH_NAME to TEXT,
+                Favorite.MATCH_DETAIL to TEXT)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -31,5 +32,5 @@ class DBOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "FavTeam.db", nu
     }
 }
 
-val Context.database: DBOpenHelper
+val Context.dbhelper: DBOpenHelper
     get() = DBOpenHelper.getInstance(applicationContext)
