@@ -8,8 +8,6 @@ import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 
 class TeamFragmentPresenter(private val view: TeamFragmentView,
                             private val apiRepository: ApiRepository,
@@ -19,7 +17,7 @@ class TeamFragmentPresenter(private val view: TeamFragmentView,
         view.showLoading()
         GlobalScope.launch(Dispatchers.Main) {
             val data = gson.fromJson(apiRepository
-                        .doRequest(TheSportDBApi.getTeams(league)).await(),
+                    .doRequest(TheSportDBApi.getTeams(league)).await(),
                     TeamResponse::class.java
             )
 
