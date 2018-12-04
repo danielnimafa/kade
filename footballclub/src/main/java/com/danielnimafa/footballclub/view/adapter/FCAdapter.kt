@@ -1,4 +1,4 @@
-package com.danielnimafa.footballclub.adapter
+package com.danielnimafa.footballclub.view.adapter
 
 import android.app.Activity
 import android.support.v7.widget.RecyclerView

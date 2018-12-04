@@ -1,4 +1,4 @@
-package com.danielnimafa.footballclub
+package com.danielnimafa.footballclub.view.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.view.Gravity
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.danielnimafa.footballclub.R
 import com.danielnimafa.footballclub.model.FootballClubParcel
 import org.jetbrains.anko.*
 

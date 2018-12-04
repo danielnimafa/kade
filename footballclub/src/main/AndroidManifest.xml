@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.danielnimafa.footballclub">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -11,17 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FootballClubActivity">
+        <activity android:name=".view.activities.FootballClubActivity">
 
         </activity>
-        <activity android:name=".DetailClubActivity" />
-        <activity android:name=".HomeActivity">
+        <activity android:name=".view.activities.DetailClubActivity" />
+        <activity android:name=".view.activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.activities.TeamDetailActivity" />
     </application>
 
 </manifest>

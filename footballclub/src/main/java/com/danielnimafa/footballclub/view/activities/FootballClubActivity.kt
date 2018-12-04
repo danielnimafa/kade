@@ -1,11 +1,12 @@
-package com.danielnimafa.footballclub
+package com.danielnimafa.footballclub.view.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.danielnimafa.footballclub.adapter.FCAdapter
+import com.danielnimafa.footballclub.R
+import com.danielnimafa.footballclub.view.adapter.FCAdapter
 import com.danielnimafa.footballclub.model.FootballClubParcel
 import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.recyclerview.v7.recyclerView

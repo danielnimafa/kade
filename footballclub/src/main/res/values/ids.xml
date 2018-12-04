@@ -7,4 +7,7 @@
     <item name="id4" type="id" />
     <item name="id5" type="id" />
 
+    <item name="team_badge" type="id" />
+    <item name="team_name" type="id" />
+
 </resources>
