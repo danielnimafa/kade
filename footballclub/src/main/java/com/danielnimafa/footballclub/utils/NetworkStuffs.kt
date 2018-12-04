@@ -8,6 +8,9 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -127,8 +130,8 @@ object ServiceGenerator {
 
 class ApiRepository {
 
-    fun doRequest(url: String): String {
-        return URL(url).readText()
+    fun doRequest(url: String): Deferred<String> = GlobalScope.async {
+        URL(url).readText()
     }
 }
 
