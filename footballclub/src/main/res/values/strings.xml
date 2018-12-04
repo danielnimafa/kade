@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Football Club</string>
+    <string name="inter_desc">
+        Football Club Internazionale Milano, commonly referred to as Internazionale.\n
+    Inter has won 30 domestic trophies on par with its local rivals A.C. Milan, including 18 league titles, 7 Coppa Italia and 5 Supercoppa Italiana. From 2006 to 2010, the club won five successive league titles, equalling the all-time record at that time.\n
+        They have won the Champions League three times: two back-to-back in 1964 and 1965 and then another in 2010.
+    </string>
+    <string name="ac_milan_desc">
+        Associazione Calcio Milan, commonly referred to as A.C. Milan or simply Milan,
+        is a professional football club in Milan, Italy, founded in 1899.\n
+        The club has spent its entire history, with the exception of the 1980–81 and 1982–83 seasons, in the top flight of Italian football, known as Serie A since 1929–30.\n
+        A.C. Milan\'s 18 FIFA and UEFA trophies is the fourth highest out of any club (joint with Boca Juniors), and the most out of any Italian club.
+    </string>
+    <string name="juve_desc">
+        colloquially known as Juve, is an Italian professional football club in Turin, Piedmont.\n
+        Founded in 1897 by a group of Torinese students, the club has worn a black and white striped home kit since 1903 and has played home matches in different grounds around its city, the latest being the 41,507-capacity Allianz Stadium.\n
+        Nicknamed Vecchia Signora ("the Old Lady"), the club has won 34 official league titles, 13 Coppa Italia titles and seven national Super Cups titles, being the record holder for all these competitions; two Intercontinental Cups, two European Cups / UEFA Champions Leagues, one European Cup Winners\' Cup, a national record of three UEFA Cups, two UEFA Super Cups and one UEFA Intertoto Cup.
+    </string>
+    <string name="lazio_desc">
+        Società Sportiva Lazio S.p.A., commonly referred to as Lazio, is a professional Italian sports club based in Rome, most known for its football activity.\n
+        The society, founded in 1900, plays in the Serie A and have spent most of their history in the top tier of Italian football. Lazio have been Italian champions twice (1974, 2000), and have won the Coppa Italia six times, the Supercoppa Italiana four times, and both the UEFA Cup Winners Cup and UEFA Super Cup on one occasion.
+    </string>
+    <string name="realmadrid_desc">
+        Real Madrid Club de Futbol, commonly known as Real Madrid, is a professional football club based in Madrid, Spain.\n
+        Founded on 6 March 1902 as the Madrid Football Club, the club has traditionally worn a white home kit since inception.
+        The word real is Spanish for \"royal\" and was bestowed to the club by King Alfonso XIII in 1920 together with the royal crown in the emblem. The team has played its home matches in the 81,044-capacity Santiago Bernabéu Stadium in downtown Madrid since 1947. Unlike most European sporting entities, Real Madrid\'s members (socios) have owned and operated the club throughout its history.
+    </string>
+    <string name="fcb_desc">
+         known simply as Barcelona and colloquially as Barça ([ˈbaɾsə]), is a professional football club based in Barcelona, Catalonia, Spain.\n
+        Founded in 1899 by a group of Swiss, English and Catalan footballers led by Joan Gamper, the club has become a symbol of Catalan culture and Catalanism. Unlike many other football clubs, the supporters own and operate Barcelona. It is the third most valuable sports team in the world, worth $4.07 billion, and the world\'s third richest football club in terms of revenue, with an annual turnover of €648.3 million. The official Barcelona anthem is the \"Cant del Barça\", written by Jaume Picas and Josep Maria Espinàs.
+    </string>
+    <string name="chelsea_desc">
+        is a professional football club in London, England, that competes in the Premier League. Founded in 1905, the club\'s home ground since then has been Stamford Bridge.\n
+        Chelsea won the First Division title in 1955, followed by various cup competitions between 1965 and 1971. The past two decades have seen sustained success, with the club winning 23 trophies since 1997. In total, the club has won 28 major trophies; six titles, eight FA Cups, five League Cups and four FA Community Shields, one UEFA Champions League, two UEFA Cup Winners Cups, one UEFA Europa League and one UEFA Super Cup.
+    </string>
+    <string name="mu_desc">
+        commonly known as Man United, or simply United, is a professional football club based in Old Trafford, Greater Manchester, England, that competes in the Premier League, the top flight of English football. Nicknamed "the Red Devils", the club was founded as Newton Heath LYR Football Club in 1878, changed its name to Manchester United in 1902 and moved to its current stadium, Old Trafford, in 1910.
+    </string>
+    <string name="liverpool_desc">
+        is a professional football club in Liverpool, England, that competes in the Premier League, the top tier of English football. The club has won 5 European Cups, more than any other English club, 3 UEFA Cups, 3 UEFA Super Cups, 18 League titles, 7 FA Cups, 8 League Cups, and 15 FA Community Shields.
+    </string>
+    <string name="arsenal_desc">
+        is a professional football club based in Islington, London, England, that plays in the Premier League, the top flight of English football. The club has won 13 League titles, a record 13 FA Cups, two League Cups, the League Centenary Trophy, 15 FA Community Shields, one UEFA Cup Winners\' Cup and one Inter-Cities Fairs Cup.
+    </string>
+    <string name="psg_desc">
+        commonly known as Paris Saint-Germain, Paris SG, or simply PSG, is a French professional football club based in the city of Paris. Founded in 1970, the club has traditionally worn red and blue kits. The team has played its home matches in the 47,929-capacity Parc des Princes in the 16th arrondissement of Paris since 1974. The club plays in the highest tier of French football, Ligue 1.
+    </string>
+    <string name="monaco_desc">
+        commonly referred to as AS Monaco (pronounced [ɑ ɛs mɔnako]) or simply Monaco, is a Monégasque football club that competes in Ligue 1, the top tier of French football. Founded in 1924, the club team plays its home matches at the Stade Louis II in Fontvieille. The club is managed by former player Thierry Henry and captained by Radamel Falcao.
+    </string>
+    <string name="teams">Teams</string>
+    <string name="favorites">Favorites</string>
+
+    <array name="league">
+        <item>English Premier League</item>
+        <item>English League Championship</item>
+        <item>German Bundesliga</item>
+        <item>Italian Serie A</item>
+        <item>French Ligue 1</item>
+        <item>Spanish La Liga</item>
+    </array>
+</resources>
